@@ -1,7 +1,11 @@
-import styled from "styled-components/native";
-
-const Container = styled.View``;
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import Navigator from "./Navigator";
 
 export default function App() {
-    return <Container></Container>;
+    return (
+        <NavigationContainer>
+            <Navigator />
+        </NavigationContainer>
+    );
 }
