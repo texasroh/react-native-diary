@@ -1,7 +1,10 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { Alert } from "react-native";
 import styled from "styled-components/native";
 import colors from "../colors";
+import { useDB } from "../context";
+import { RootStackParamList } from "../Navigator";
 
 const View = styled.View`
   background-color: ${colors.bgColor};
@@ -57,7 +60,10 @@ const EmotionText = styled.Text`
 
 const emotions = ["😀", "😂", "😍", "😅", "😥", "😮"];
 
-const Write = () => {
+const Write: React.FC<NativeStackScreenProps<RootStackParamList, "Write">> = ({
+  navigation: { goBack },
+}) => {
+  const realm = useDB();
   const [selectedEmotion, setEmotion] = useState("");
   const [feelings, setFeelings] = useState("");
   const onChangeText = (text: string) => setFeelings(text);
@@ -66,6 +72,14 @@ const Write = () => {
     if (feelings === "" || selectedEmotion == "") {
       return Alert.alert("please complete form.");
     }
+    realm?.write(() => {
+      const feeling = realm.create("Feeling", {
+        _id: Date.now(),
+        emotion: selectedEmotion,
+        message: feelings,
+      });
+      goBack();
+    });
   };
   return (
     <View>
