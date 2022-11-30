@@ -72,7 +72,7 @@ const Write: React.FC<NativeStackScreenProps<RootStackParamList, "Write">> = ({
     if (feelings === "" || selectedEmotion == "") {
       return Alert.alert("please complete form.");
     }
-    realm?.write(() => {
+    realm.write(() => {
       const feeling = realm.create("Feeling", {
         _id: Date.now(),
         emotion: selectedEmotion,

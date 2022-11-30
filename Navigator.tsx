@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeStackNavigatorProps } from "@react-navigation/native-stack/lib/typescript/src/types";
 import Home from "./screens/Home";
 import Write from "./screens/Write";
-
-const Tabs = createNativeStackNavigator();
 
 export type RootStackParamList = {
   Home: undefined;
   Write: undefined;
 };
+
+const Tabs = createNativeStackNavigator<RootStackParamList>();
 
 const Navigator = () => (
   <Tabs.Navigator
