@@ -3,8 +3,20 @@
     "name": "react-native-diary",
     "slug": "react-native-diary",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
+    "assetBundlePatterns": ["**/*"],
+    "plugins": [
+      "expo-build-properties",
+      {
+        "android": {
+          "compileSdkVersion": 31,
+          "targetSdkVersion": 31,
+          "buildToolsVersion": "31.0.0"
+        },
+        "ios": {
+          "deploymentTarget": "13.0",
+          "useFrameworks": "static"
+        }
+      }
     ]
   },
   "name": "react-native-diary"
